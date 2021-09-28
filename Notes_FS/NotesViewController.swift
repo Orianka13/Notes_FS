@@ -6,10 +6,30 @@
 //
 
 import UIKit
+import CoreData
 
 class NotesViewController: UITableViewController {
     
-    var notes: [String] = []
+    var notes: [Note] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+        
+        do {
+            try notes = context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        tableView.reloadData()
+    }
 
 
     override func viewDidLoad() {
@@ -32,8 +52,9 @@ class NotesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        cell.textLabel?.text = notes[indexPath.row] // только первую строку из заметки
+        
+        let note = notes[indexPath.row]
+        cell.textLabel?.text = note.text // только первую строку из заметки
 
         return cell
     }

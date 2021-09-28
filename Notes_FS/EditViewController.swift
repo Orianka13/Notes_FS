@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EditViewController: UIViewController {
     
@@ -23,11 +24,26 @@ class EditViewController: UIViewController {
     
     @IBAction func saveText(_ sender: UIBarButtonItem) {
         if let newNote = textView.text{
-            notesVC.notes.insert(newNote, at: 0)
-            print(notesVC.notes)
+            self.saveNote(withText: newNote)
+            self.navigationController?.popViewController(animated: true)
         }
-        notesVC.tableView.reloadData()
-        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func saveNote(withText text: String){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else { return }
+        let noteObject = Note(entity: entity, insertInto: context)
+        
+        noteObject.text = text
+        
+        do {
+            try context.save()
+            notesVC.notes.append(noteObject)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
    
   
