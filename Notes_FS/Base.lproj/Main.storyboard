@@ -24,6 +24,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="798-aQ-Hrq" kind="show" identifier="EditNote" id="IGM-6Y-Cc4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -103,6 +106,9 @@
             <point key="canvasLocation" x="-318.84057971014494" y="35.491071428571423"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IGM-6Y-Cc4"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

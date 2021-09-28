@@ -40,7 +40,7 @@ class EditViewController: UIViewController {
         
         do {
             try context.save()
-            notesVC.notes.append(noteObject)
+            notesVC.notes.insert(noteObject, at: 0)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
