@@ -21,8 +21,6 @@ class NotesViewController: UITableViewController {
         let context = appDelegate.persistentContainer.viewContext
         
         let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
-//        let sortDescriptor = NSSortDescriptor(key: "text", ascending: false)
-//        fetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
             try notes = context.fetch(fetchRequest)
@@ -36,16 +34,12 @@ class NotesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //deleteNote()
 
     }
     
     private func deleteNote(note: Note) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
-        //let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
         
         context.delete(note)
         
@@ -111,14 +105,18 @@ class NotesViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "EditNote" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let note = notes[indexPath.row]
+            let editVC = segue.destination as! EditViewController
+            editVC.currentNote = note
+        }
     }
-    */
+    
 
 }
