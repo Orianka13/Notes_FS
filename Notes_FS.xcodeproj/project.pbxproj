@@ -16,6 +16,7 @@
 		59D7706F2703094400BE839C /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D7706E2703094400BE839C /* NotesViewController.swift */; };
 		59D77071270309AE00BE839C /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D77070270309AE00BE839C /* EditViewController.swift */; };
 		59D770732703685200BE839C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D770722703685200BE839C /* StorageManager.swift */; };
+		59D770772704BD1B00BE839C /* PickerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D770762704BD1B00BE839C /* PickerViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		59D7706E2703094400BE839C /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		59D77070270309AE00BE839C /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		59D770722703685200BE839C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		59D770762704BD1B00BE839C /* PickerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				59D7706E2703094400BE839C /* NotesViewController.swift */,
 				59D770722703685200BE839C /* StorageManager.swift */,
 				59D77070270309AE00BE839C /* EditViewController.swift */,
+				59D770762704BD1B00BE839C /* PickerViewManager.swift */,
 				59D770632703077D00BE839C /* Assets.xcassets */,
 				59D770652703077D00BE839C /* LaunchScreen.storyboard */,
 				59D770682703077D00BE839C /* Info.plist */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59D77071270309AE00BE839C /* EditViewController.swift in Sources */,
+				59D770772704BD1B00BE839C /* PickerViewManager.swift in Sources */,
 				59D7706F2703094400BE839C /* NotesViewController.swift in Sources */,
 				59D770582703077700BE839C /* AppDelegate.swift in Sources */,
 				59D770732703685200BE839C /* StorageManager.swift in Sources */,
