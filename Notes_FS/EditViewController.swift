@@ -13,6 +13,8 @@ class EditViewController: UIViewController {
     var currentNote: Note?
     let storageManager = StorageManager()
     let notesVC = NotesViewController()
+    var isBold = false
+    var isItalic = false
     
     var fontNames = ["AmericanTypewriter",
                      "AppleSDGothicNeo-Regular",
@@ -96,6 +98,36 @@ class EditViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    @IBAction func boldText(_ sender: UIButton) {
+        
+        isBold = !isBold
+        
+        if isBold {
+            guard let fontSize = textView.font?.pointSize else { return }
+            self.textView.font = UIFont(name: "AppleSDGothicNeo-Bold", size: fontSize)
+        } else {
+            guard let fontSize = textView.font?.pointSize else { return }
+            self.textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: fontSize)
+        }
+        
+    }
+    
+    @IBAction func italicText(_ sender: UIButton) {
+        
+        isItalic = !isItalic
+        
+        if isItalic {
+            guard let fontSize = textView.font?.pointSize else { return }
+            self.textView.font = UIFont(name: "Georgia-Italic", size: fontSize)
+        } else {
+            guard let fontSize = textView.font?.pointSize else { return }
+            self.textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: fontSize)
+        }
+    }
+    
+    
+    
     //поднимаем текст над клавой
     @objc private func updateTextView(notification: Notification) {
         guard

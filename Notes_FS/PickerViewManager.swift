@@ -27,7 +27,6 @@ extension EditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         guard let fontSize = textView.font?.pointSize else { return }
         self.fontNameField.text = selectedFontName
         self.textView.font = UIFont(name: selectedFontName ?? "AppleSDGothicNeo-Regular", size: fontSize)
-        
     }
     
     func choiceFont() {
