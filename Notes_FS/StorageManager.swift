@@ -44,5 +44,4 @@ class StorageManager {
             print(error.localizedDescription)
         }
     }
-    
 }

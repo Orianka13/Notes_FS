@@ -26,7 +26,6 @@ class EditViewController: UIViewController {
                      "Optima-Regular"]
     
     var selectedFontName: String?
-
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var stepperButton: UIStepper!
@@ -37,7 +36,6 @@ class EditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         setupEditScreen()
         choiceFont()
@@ -60,7 +58,6 @@ class EditViewController: UIViewController {
         stepperButton.value = 18
         stepperButton.minimumValue = 10
         stepperButton.maximumValue = 25
-        stepperButton.tintColor = .white
         stepperButton.backgroundColor = UIColor(hexValue: "#F9F9FF", alpha: 0.3)
         stepperButton.layer.cornerRadius = 5
         
@@ -87,7 +84,6 @@ class EditViewController: UIViewController {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        
     }
     
     @IBAction func saveText(_ sender: UIBarButtonItem) {
@@ -124,7 +120,6 @@ class EditViewController: UIViewController {
             guard let fontSize = textView.font?.pointSize else { return }
             self.textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: fontSize)
         }
-        
     }
     
     @IBAction func italicText(_ sender: UIButton) {
@@ -152,7 +147,7 @@ class EditViewController: UIViewController {
             bottomConstraint.constant = 41
         } else {
             textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
-           bottomConstraint.constant = keyboardFrame.height - 20
+            bottomConstraint.constant = keyboardFrame.height + 2
             
             textView.scrollIndicatorInsets = textView.contentInset
         }

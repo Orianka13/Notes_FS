@@ -19,12 +19,13 @@ class NotesViewController: UITableViewController {
         
         let context = storageManager.getContext()
         
-        let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
-        do {
-            try notes = context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+            let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+            do {
+                try notes = context.fetch(fetchRequest)
+                notes.reverse()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
         
         tableView.reloadData()
     }
@@ -34,19 +35,20 @@ class NotesViewController: UITableViewController {
         
         view.backgroundColor = primaryColor
         navigationController?.navigationBar.backgroundColor = primaryColor
+        
     }
-
-
+    
+    
     @IBAction func addNote(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "AddNote", sender: nil)
     }
     
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
@@ -54,22 +56,22 @@ class NotesViewController: UITableViewController {
         cell.textLabel?.text = note.text
         cell.textLabel?.textColor = .white
         cell.backgroundColor = primaryColor
-
+        
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let note = notes[indexPath.row]
             storageManager.deleteNote(note: note)
             notes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-
+            
         }
     }
-
+    
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditNote" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -78,6 +80,4 @@ class NotesViewController: UITableViewController {
             editVC.currentNote = note
         }
     }
-    
-
 }
