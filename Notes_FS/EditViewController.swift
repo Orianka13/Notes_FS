@@ -16,8 +16,8 @@ class EditViewController: UIViewController {
     var isBold = false
     var isItalic = false
     
-    var fontNames = ["AmericanTypewriter",
-                     "AppleSDGothicNeo-Regular",
+    var fontNames = ["AppleSDGothicNeo-Regular",
+                     "AmericanTypewriter",
                      "ChalkboardSE-Regular",
                      "Cochin",
                      "Farah",
@@ -31,6 +31,8 @@ class EditViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var stepperButton: UIStepper!
     @IBOutlet weak var fontNameField: UITextField!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
@@ -55,11 +57,18 @@ class EditViewController: UIViewController {
                                                object: nil)
         textView.layer.cornerRadius = 10
         
-        stepperButton.value = 22
-        stepperButton.minimumValue = 15
-        stepperButton.maximumValue = 30
+        stepperButton.value = 18
+        stepperButton.minimumValue = 10
+        stepperButton.maximumValue = 25
         stepperButton.tintColor = .white
-        stepperButton.backgroundColor = .gray
+        stepperButton.backgroundColor = UIColor(hexValue: "#F9F9FF", alpha: 0.3)
+        stepperButton.layer.cornerRadius = 5
+        
+        view.backgroundColor = primaryColor
+        textView.backgroundColor = primaryColor
+        textView.textColor = .white
+        fontNameField.backgroundColor = UIColor(hexValue: "#F9F9FF", alpha: 0.3)
+        fontNameField.textColor = .white
     }
     
     
@@ -126,8 +135,6 @@ class EditViewController: UIViewController {
         }
     }
     
-    
-    
     //поднимаем текст над клавой
     @objc private func updateTextView(notification: Notification) {
         guard
@@ -137,8 +144,11 @@ class EditViewController: UIViewController {
         
         if notification.name == UIResponder.keyboardWillHideNotification {
             textView.contentInset = UIEdgeInsets.zero
+            bottomConstraint.constant = 41
         } else {
-            textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height - 20, right: 0)
+            textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+           bottomConstraint.constant = keyboardFrame.height - 20
+            
             textView.scrollIndicatorInsets = textView.contentInset
         }
         textView.scrollRangeToVisible(textView.selectedRange)

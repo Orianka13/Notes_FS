@@ -28,6 +28,13 @@ class NotesViewController: UITableViewController {
         
         tableView.reloadData()
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = primaryColor
+        navigationController?.navigationBar.backgroundColor = primaryColor
+    }
 
 
     @IBAction func addNote(_ sender: UIBarButtonItem) {
@@ -45,6 +52,8 @@ class NotesViewController: UITableViewController {
         
         let note = notes[indexPath.row]
         cell.textLabel?.text = note.text
+        cell.textLabel?.textColor = .white
+        cell.backgroundColor = primaryColor
 
         return cell
     }

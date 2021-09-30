@@ -8,13 +8,18 @@
 import UIKit
 import CoreData
 
+let primaryColor = UIColor(hexValue: "#896E69", alpha: 1)
+
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        UINavigationBar.appearance().barTintColor = primaryColor
+        UINavigationBar.appearance().tintColor = .white
+        
         return true
     }
 
