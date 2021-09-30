@@ -28,13 +28,15 @@ class StorageManager {
         }
     }
     
-    func saveNote(withText text: String){
+    func saveNote(withText text: String, font: String, fontSize: Double){
         let context = getContext()
         
         guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else { return }
         let noteObject = Note(entity: entity, insertInto: context)
         
         noteObject.text = text
+        noteObject.font = font
+        noteObject.fontSize = fontSize
         
         do {
             try context.save()

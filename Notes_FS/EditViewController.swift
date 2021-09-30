@@ -93,8 +93,13 @@ class EditViewController: UIViewController {
     @IBAction func saveText(_ sender: UIBarButtonItem) {
         
         if let newNote = textView.text{
+            guard let textFont = textView.font?.fontName else {return}
+            guard let fontPreSize = textView.font?.pointSize else { return }
+            let fontSize = Double(fontPreSize)
             if currentNote != nil {
                 currentNote?.text = newNote
+                currentNote?.font = textFont
+                currentNote?.fontSize = fontSize
                 let context = storageManager.getContext()
                 do {
                     try context.save()
@@ -102,7 +107,7 @@ class EditViewController: UIViewController {
                     print(error.localizedDescription)
                 }
             } else {
-                storageManager.saveNote(withText: newNote)
+                storageManager.saveNote(withText: newNote, font: textFont, fontSize: fontSize)
             }
             self.navigationController?.popViewController(animated: true)
         }
@@ -157,6 +162,10 @@ class EditViewController: UIViewController {
     private func setupEditScreen() {
         if currentNote != nil {
             textView.text = currentNote?.text
+            guard let fontName = currentNote?.font else { return }
+            guard let fontPreSize = currentNote?.fontSize else { return }
+            let fontSize = CGFloat(fontPreSize)
+            textView.font = UIFont(name: fontName, size: fontSize)
             self.navigationItem.title = "Edit note"
         }
     }
