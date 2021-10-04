@@ -75,7 +75,9 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func stepper(_ sender: UIStepper) {
-        guard let font = textView.font?.fontName else { return }
+        guard let font = textView.font?.fontName else {
+            print("Error with font name")
+            return }
         let fontSize = CGFloat(sender.value)
         textView.font = UIFont(name: font, size: fontSize)
         let context = storageManager.getContext()
@@ -89,8 +91,12 @@ class EditViewController: UIViewController {
     @IBAction func saveText(_ sender: UIBarButtonItem) {
         
         if let newNote = textView.text{
-            guard let textFont = textView.font?.fontName else {return}
-            guard let fontPreSize = textView.font?.pointSize else { return }
+            guard let textFont = textView.font?.fontName else {
+                print("Error with font name")
+                return}
+            guard let fontPreSize = textView.font?.pointSize else {
+                print("Error with font size")
+                return }
             let fontSize = Double(fontPreSize)
             if currentNote != nil {
                 currentNote?.text = newNote
@@ -114,10 +120,14 @@ class EditViewController: UIViewController {
         isBold = !isBold
         
         if isBold {
-            guard let fontSize = textView.font?.pointSize else { return }
+            guard let fontSize = textView.font?.pointSize else {
+                print("Error with font size")
+                return }
             self.textView.font = UIFont(name: "AppleSDGothicNeo-Bold", size: fontSize)
         } else {
-            guard let fontSize = textView.font?.pointSize else { return }
+            guard let fontSize = textView.font?.pointSize else {
+                print("Error with font size")
+                return }
             self.textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: fontSize)
         }
     }
@@ -127,10 +137,14 @@ class EditViewController: UIViewController {
         isItalic = !isItalic
         
         if isItalic {
-            guard let fontSize = textView.font?.pointSize else { return }
+            guard let fontSize = textView.font?.pointSize else {
+                print("Error with font size")
+                return }
             self.textView.font = UIFont(name: "Georgia-Italic", size: fontSize)
         } else {
-            guard let fontSize = textView.font?.pointSize else { return }
+            guard let fontSize = textView.font?.pointSize else {
+                print("Error with font size")
+                return }
             self.textView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: fontSize)
         }
     }
@@ -140,7 +154,9 @@ class EditViewController: UIViewController {
         guard
             let userInfo = notification.userInfo as? [String: Any],
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        else { return }
+        else {
+            print("Error with keyboard frame value")
+            return }
         
         if notification.name == UIResponder.keyboardWillHideNotification {
             textView.contentInset = UIEdgeInsets.zero
@@ -157,8 +173,12 @@ class EditViewController: UIViewController {
     private func setupEditScreen() {
         if currentNote != nil {
             textView.text = currentNote?.text
-            guard let fontName = currentNote?.font else { return }
-            guard let fontPreSize = currentNote?.fontSize else { return }
+            guard let fontName = currentNote?.font else {
+                print("Error with current font name")
+                return }
+            guard let fontPreSize = currentNote?.fontSize else {
+                print("Error with current font size")
+                return }
             let fontSize = CGFloat(fontPreSize)
             textView.font = UIFont(name: fontName, size: fontSize)
             self.navigationItem.title = "Edit note"

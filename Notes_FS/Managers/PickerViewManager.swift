@@ -24,7 +24,9 @@ extension EditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) { // работаем с выбранным элементом
         selectedFontName = fontNames[row]
-        guard let fontSize = textView.font?.pointSize else { return }
+        guard let fontSize = textView.font?.pointSize else {
+            print("Error with font size")
+            return }
         self.fontNameField.text = selectedFontName
         self.textView.font = UIFont(name: selectedFontName ?? "AppleSDGothicNeo-Regular", size: fontSize)
     }

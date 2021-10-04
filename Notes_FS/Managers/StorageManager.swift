@@ -31,7 +31,9 @@ class StorageManager {
     func saveNote(withText text: String, font: String, fontSize: Double){
         let context = getContext()
         
-        guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else { return }
+        guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else {
+            print("Error with entity")
+            return }
         let noteObject = Note(entity: entity, insertInto: context)
         
         noteObject.text = text

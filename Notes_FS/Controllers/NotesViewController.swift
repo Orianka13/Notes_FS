@@ -74,7 +74,9 @@ class NotesViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditNote" {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                print("Error with indexPath for selected row")
+                return }
             let note = notes[indexPath.row]
             let editVC = segue.destination as! EditViewController
             editVC.currentNote = note
